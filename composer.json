@@ -1,0 +1,25 @@
+{
+    "name": "aquy/yii2-seo",
+    "type": "yii2-extension",
+    "description": "Seo",
+    "keywords": ["yii2", "seo"],
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/aquy/yii2-seo/issues",
+        "source": "https://github.com/aquy/yii2-seo"
+    },
+    "authors": [
+        {
+            "name": "Алексей Лихачев",
+            "email": "aquy@yandex.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "aquy\\seo\\": ""
+        }
+    }
+}

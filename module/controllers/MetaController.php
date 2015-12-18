@@ -25,10 +25,6 @@ class MetaController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['site/login', 'error'],
-                        'allow' => true,
-                    ],
-                    [
                         'actions' => [
                             'index',
                             'update',

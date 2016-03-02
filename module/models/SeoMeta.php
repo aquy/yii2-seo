@@ -9,6 +9,7 @@ use yii\helpers\ArrayHelper;
 class SeoMeta extends \yii\db\ActiveRecord
 {
 
+    const H1 = 'h1';
     const TITLE = 'title';
     const META_KEYWORDS = 'keywords';
     const META_DESCRIPTION = 'description';
@@ -61,6 +62,7 @@ class SeoMeta extends \yii\db\ActiveRecord
     public static function nameList()
     {
         return [
+            self::H1 => 'H1',
             self::TITLE => 'Title',
             self::META_KEYWORDS => 'Meta Keywords',
             self::META_DESCRIPTION => 'Meta Description',

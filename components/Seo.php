@@ -24,13 +24,35 @@ class Seo extends Object {
     ];
 
     protected $block = [
-        'title' => 'Page Title'
+        'title' => 'Page Title',
+        'h1' => 'H1'
     ];
 
     public function init()
     {
         Yii::$app->on(Controller::EVENT_BEFORE_ACTION, [$this, '_meta_page']);
         Yii::$app->on(Controller::EVENT_AFTER_ACTION, [$this, '_meta_init']);
+        Yii::$app->view->on(View::EVENT_BEGIN_BODY, [$this, '_link']);
+    }
+
+    public function _link()
+    {
+        if (Yii::$app->user->can('admin') && !is_null($this->_page)) {
+            echo Html::tag(
+                'div',
+                Html::a(
+                    'сео',
+                    '/backend/seo/meta/update?id=' . $this->_page['id'],
+                    ['style' => 'padding: 2px 10px;border-radius:3px;background-color:blue;color:white;']
+                ) . ' ' .
+                Html::a(
+                    'администрирование',
+                    '/backend',
+                    ['style' => 'padding: 2px 10px;border-radius:3px;background-color:blue;color:white;']
+                ),
+                ['style' => 'text-align:center;font-size:14px;background-color:white;z-index:9999;position:relative;padding: 3px 10px;']
+            );
+        }
     }
 
     public function _meta_page()
@@ -96,6 +118,18 @@ class Seo extends Object {
         } else {
             return null;
         }
+    }
+
+    public function isMeta($name)
+    {
+        if ($this->_page['meta']) {
+            foreach ($this->_page['meta'] as $meta) {
+                if ($meta['name'] === $name) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 } 

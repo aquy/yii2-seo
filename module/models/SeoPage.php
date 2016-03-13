@@ -20,7 +20,7 @@ class SeoPage extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'seo_page';
+        return '{{%seo_page}}';
     }
 
     /**

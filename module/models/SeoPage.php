@@ -51,6 +51,11 @@ class SeoPage extends \yii\db\ActiveRecord
         return $this->hasMany(SeoMeta::className(), ['page_id' => 'id']);
     }
 
+    public function getH1()
+    {
+        return $this->hasOne(SeoMeta::className(), ['page_id' => 'id'])->where(['name' => SeoMeta::H1]);
+    }
+
     public function getTitle()
     {
         return $this->hasOne(SeoMeta::className(), ['page_id' => 'id'])->where(['name' => SeoMeta::TITLE]);

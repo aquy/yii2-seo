@@ -8,12 +8,27 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\View;
 use yii\base\Object;
 
 class Seo extends Object {
+
+    /**
+     * @var array дублируем из юрл мэнеджера пути с доступными параметрами
+     * остальные запросы с параметрами не будут добавляться в БД.
+     * нужно чтобы корректно обрабатывались utm и прочие метки
+     *
+     * Например,
+     *
+     * ~~~
+     * [
+     *   'site/index' => ['myParam', 'mySecondParam'],
+     *   'site/about',
+     * ]
+     * ~~~
+     */
+    public $actions = [];
 
     protected $_page;
     protected $_action_params;
@@ -102,9 +117,12 @@ class Seo extends Object {
     protected function _action_params()
     {
         $action_params = Yii::$app->request->queryParams;
-        foreach($action_params as $key => $value) {
-            if (is_null($value) || $value == '') {
-                unset($action_params[$key]);
+        if (isset($this->actions[$this->_view()])) {
+            $action_param = $this->actions[$this->_view()];
+            foreach($action_params as $key => $value) {
+                if (is_null($value) || $value == '' || !ArrayHelper::isIn($key, $action_param)) {
+                    unset($action_params[$key]);
+                }
             }
         }
         $action_params = Json::encode($action_params);

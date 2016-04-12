@@ -117,7 +117,7 @@ class Seo extends Object {
     protected function _action_params()
     {
         $action_params = Yii::$app->request->queryParams;
-        if (isset($this->actions[$this->_view()])) {
+        if ($this->_view() && isset($this->actions[$this->_view()])) {
             $action_param = $this->actions[$this->_view()];
             foreach($action_params as $key => $value) {
                 if (is_null($value) || $value == '' || !ArrayHelper::isIn($key, $action_param)) {

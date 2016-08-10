@@ -75,7 +75,7 @@ class Seo extends Object {
         $where['view'] = $this->_view();
         $where['action_params'] = $this->_action_params();
         $this->_page = SeoPage::find()->where($where)->with('meta')->asArray()->one();
-        if (!is_null($this->_page)) {
+        if (!is_null($this->_page) && ($where['view'])) {
             $this->renderMeta();
         }
     }

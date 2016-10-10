@@ -141,7 +141,7 @@ class Seo extends Object {
 
     public function meta($name)
     {
-        if (ArrayHelper::keyExists($name, $this->meta)) {
+        if (ArrayHelper::keyExists($name, $this->metaBlock)) {
             return $this->metaBlock[$name];
         }
         return null;

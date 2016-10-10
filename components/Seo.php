@@ -33,6 +33,7 @@ class Seo extends Object {
     protected $_page;
     protected $_action_params;
     protected $seoBlock = [];
+    protected $metaBlock = [];
     protected $meta = [
         'keywords' => 'Meta Keywords',
         'description' => 'Meta Description'
@@ -99,6 +100,7 @@ class Seo extends Object {
                     'name' => $meta['name'],
                     'content' => $meta['content']
                 ]);
+                $this->metaBlock[$meta['name']] = $meta['content'];
             } else if (isset($this->block[$meta['name']])) {
                 $this->seoBlock[$meta['name']] = $meta['content'];
             }
@@ -133,9 +135,16 @@ class Seo extends Object {
     {
         if (ArrayHelper::keyExists($name, $this->seoBlock)) {
             return $this->seoBlock[$name];
-        } else {
-            return null;
         }
+        return null;
+    }
+
+    public function meta($name)
+    {
+        if (ArrayHelper::keyExists($name, $this->meta)) {
+            return $this->metaBlock[$name];
+        }
+        return null;
     }
 
     public function isMeta($name)

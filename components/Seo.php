@@ -10,9 +10,9 @@ use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\View;
-use yii\base\Object;
+use yii\base\BaseObject;
 
-class Seo extends Object {
+class Seo extends BaseObject {
 
     /**
      * @var array дублируем из юрл мэнеджера пути с доступными параметрами

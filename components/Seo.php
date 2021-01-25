@@ -24,7 +24,7 @@ class Seo extends Object {
      * ~~~
      * [
      *   'site/index' => ['myParam', 'mySecondParam'],
-     *   'site/about',
+     *   'site/about' => [],
      * ]
      * ~~~
      */
